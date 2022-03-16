@@ -4,9 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="4c28d719-14d2-4d03-b4de-b7ae34982636" name="Changes" comment="Estructura con la app básica">
-      <changelist_data name="David Braga Rodrígues" email="dbragarodrigues@danielcastelao.com" date="1647434358000" />
+    <list default="true" id="4c28d719-14d2-4d03-b4de-b7ae34982636" name="Changes" comment="Estructdependencia discord con comentario">
       <change afterPath="$PROJECT_DIR$/src/main/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -100,7 +100,14 @@
       <option name="project" value="LOCAL" />
       <updated>1647434471338</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Estructdependencia discord con comentario">
+      <created>1647436309283</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1647436309283</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -133,6 +140,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Estructura con la app básica" />
-    <option name="LAST_COMMIT_MESSAGE" value="Estructura con la app básica" />
+    <MESSAGE value="Estructdependencia discord con comentario" />
+    <option name="LAST_COMMIT_MESSAGE" value="Estructdependencia discord con comentario" />
   </component>
 </project>
