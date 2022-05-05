@@ -71,7 +71,7 @@ public final class Main {
     }
 
     public static void main(final String[] args) {
-        final String token = "OTUzNjQyNTc2NTEzMjA0MzI0.YjHi3A.KbKEdphgsVEqk1j-pPZ8a7UJOaw";
+        final String token = "token discord que no publico sin no me lo borra";
         final DiscordClient client = DiscordClient.create(token);
         final GatewayDiscordClient gateway = client.login().block();
 
@@ -83,11 +83,11 @@ public final class Main {
                 .author("David", "https://media.redadn.es/series/capi/capitulo_14058.jpg", "https://i.imgur.com/LshAsmQ.jpeg")
                 .description("No hay descripcion")
                 .thumbnail("https://i.imgur.com/EASQgbY.jpeg")
-                .addField("field title", "value", false)
+                .addField("EMBDE TO GUAPO", ":D", false)
                 .addField("\u200B", "\u200B", false)
-                .addField("inline field", "value", true)
-                .addField("inline field", "value", true)
-                .addField("inline field", "value", true)
+                .addField("prueba 1", "123", true)
+                .addField("prueba2", "123", true)
+                .addField("prueba3", "123", true)
                 .image("https://i.imgur.com/tiibS57.jpeg")
                 .timestamp(Instant.now())
                 .footer("footer", "https://i.imgur.com/QOaCZiE.jpeg")
