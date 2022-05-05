@@ -71,7 +71,7 @@ public final class Main {
     }
 
     public static void main(final String[] args) {
-        final String token = "token discord que no publico sin no me lo borra";
+        final String token = "TOKEN";
         final DiscordClient client = DiscordClient.create(token);
         final GatewayDiscordClient gateway = client.login().block();
 
@@ -143,9 +143,9 @@ public final class Main {
                             System.out.printf("%s (%s)\n", file.getName(), file.getId());
                             dirImagenes = file.getId(); //guarda el nombre y el Id de la carpeta en el String dirImagenes
                         }
-                        //busca la imagen
+                        //busca la imagen llamada capi
                         FileList resultImagenes= service.files().list()
-                                .setQ("name contains 'image' and parents in '" + dirImagenes + "'")
+                                .setQ("name contains 'capi' and parents in '" + dirImagenes + "'")
                                 .setSpaces("drive")
                                 .setFields("nextPageToken, files(id, name)")
                                 .execute();
