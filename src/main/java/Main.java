@@ -71,7 +71,7 @@ public final class Main {
     }
 
     public static void main(final String[] args) {
-        final String token = "TOKEN";
+        final String token = args[0];
         final DiscordClient client = DiscordClient.create(token);
         final GatewayDiscordClient gateway = client.login().block();
 
@@ -110,7 +110,7 @@ public final class Main {
 
             //si el mensaje es !files nos devuelve sus nombres
             if ("!files".equals(message.getContent())){
-                File file = new File("/home/dam1/cod/imagenes");
+                File file = new File("C:\\Users\\david\\OneDrive\\Escritorio\\");
                 File files[] = file.listFiles();
                 for (int i = 0; i < files.length; i++) {
                     final MessageChannel channel = message.getChannel().block();
@@ -143,21 +143,21 @@ public final class Main {
                             System.out.printf("%s (%s)\n", file.getName(), file.getId());
                             dirImagenes = file.getId(); //guarda el nombre y el Id de la carpeta en el String dirImagenes
                         }
-                        //busca la imagen llamada capi
+                        //busca la imagen, cuyo nombre contenga vegeta, dentro del directorio encontrado
                         FileList resultImagenes= service.files().list()
-                                .setQ("name contains 'capi' and parents in '" + dirImagenes + "'")
+                                .setQ("name contains 'capibara' and parents in '" + dirImagenes + "'")
                                 .setSpaces("drive")
                                 .setFields("nextPageToken, files(id, name)")
                                 .execute();
                         List<com.google.api.services.drive.model.File> filesImagenes = resultImagenes.getFiles();
-                        //si no encuentra salta No image found
+                        //si no encuentra la imagen nos avisa, saliendo por pantalla No image found
                         if(filesImagenes == null || filesImagenes.isEmpty())
                             System.out.println("No image found.");
-                        else{ //si encuentra
+                        else{ //si encuentra la imagen
                             for (com.google.api.services.drive.model.File file : filesImagenes) {
                                 System.out.printf("Imagen: %s\n", file.getName());
                                 //guarda el 'stream' dentro del direcotrio aux.jpeg que tiene que existir
-                                OutputStream outputStream = new FileOutputStream("/home/dam1/cod/examen/aux.jpeg");
+                                OutputStream outputStream = new FileOutputStream("C:\\Users\\david\\OneDrive\\Escritorio\\cd.jpg");
                                 service.files().get(file.getId())
                                         .executeMediaAndDownloadTo(outputStream);
                                 outputStream.flush();
