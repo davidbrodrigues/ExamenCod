@@ -211,6 +211,11 @@ public final class Main {
                         else{ //si encuentra el documento
                             for (com.google.api.services.drive.model.File file : filesdoc) {
 
+                                String fileId = file.getId();
+                                OutputStream outputStream = new ByteArrayOutputStream();
+                                service.files().export(fileId, "application/pdf")
+                                        .executeMediaAndDownloadTo(outputStream);
+
                             }
                         }
                     }
