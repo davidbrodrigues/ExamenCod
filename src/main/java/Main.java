@@ -171,7 +171,64 @@ public final class Main {
                     e.printStackTrace();
                 }
             }
+
+            //si el mensaje es /pdf
+            if("/pdf".equals(message.getContent())){
+                //hace el build de un nuevo servicio autorizado de la API
+                final NetHttpTransport HTTP_TRANSPORT;
+                try {
+                    HTTP_TRANSPORT = GoogleNetHttpTransport.newTrustedTransport();
+                    Drive service = new Drive.Builder(HTTP_TRANSPORT, JSON_FACTORY, getCredentials(HTTP_TRANSPORT))
+                            .setApplicationName(APPLICATION_NAME)
+                            .build();
+                    //busca una capeta llamada documentos dentro del drive
+                    FileList result = service.files().list()
+                            .setQ("name contains 'documentos' and mimeType = 'application/vnd.google-apps.folder'")
+                            .setSpaces("drive")
+                            .setFields("nextPageToken, files(id, name)")
+                            .execute();
+                    List<com.google.api.services.drive.model.File> files = result.getFiles();
+                    //si no existe la carpeta nos avisa, saliendo por pantalla No files found
+                    if (files == null || files.isEmpty()) {
+                        System.out.println("No files found.");
+                    } else { //si la carpeta si existe
+                        String dirDoc = null;
+                        System.out.println("Files:");
+                        for (com.google.api.services.drive.model.File file : files) {
+                            System.out.printf("%s (%s)\n", file.getName(), file.getId());
+                            dirDoc = file.getId();
+                        }
+                        //busca el documento, cuyo nombre contenga doc, dentro del directorio encontrado
+                        FileList resultImagenes= service.files().list()
+                                .setQ("name contains 'doc' and parents in '" + dirDoc + "'")
+                                .setSpaces("drive")
+                                .setFields("nextPageToken, files(id, name)")
+                                .execute();
+                        List<com.google.api.services.drive.model.File> filesdoc = result.getFiles();
+                        //si no encuentra el documento nos avisa, saliendo por pantalla No image found
+                        if(filesdoc == null || filesdoc.isEmpty())
+                            System.out.println("No Document found.");
+                        else{ //si encuentra el documento
+                            for (com.google.api.services.drive.model.File file : filesdoc) {
+
+                                String fileId = file.getId();
+                                OutputStream outputStream = new ByteArrayOutputStream();
+                                service.files().export(fileId, "application/pdf")
+                                        .executeMediaAndDownloadTo(outputStream);
+
+                            }
+                        }
+                    }
+                } catch (GeneralSecurityException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+
+
         });
         gateway.onDisconnect().block();
     }
+
 }
